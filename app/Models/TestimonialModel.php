@@ -15,4 +15,11 @@ class TestimonialModel extends Model
         'keterangan_testimonial',
         'gambar_testimonial'
     ];
+
+    public function count_all()
+    {
+        $builder = $this->db->table($this->table);
+        $query = $builder->countAll();
+        return $query;
+    }
 }

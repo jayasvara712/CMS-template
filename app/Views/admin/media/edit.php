@@ -37,7 +37,7 @@
                                     <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">File Media</label>
                                     <div class="col-sm-12 col-md-7">
                                         <div class="col-4">
-                                            <img src="/uploads/galeri/<?= $media->file_media ?>" alt="" srcset="" class="image-thumbnail img-preview" width="150px">
+                                            <img src="<?= base_url() ?>/uploads/media/<?= $media->file_media ?>" alt="" srcset="" class="image-thumbnail img-preview" width="150px">
                                         </div>
                                         <div class="col-12">
                                             <input type="file" id="gambar" name="file_media" class="form-control <?= ($validation->hasError('gambar')) ? 'is-invalid' : '' ?>" onchange="imagePreview()">

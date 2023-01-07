@@ -42,6 +42,10 @@ $routes->presenter('galeri');
 $routes->presenter('faq');
 $routes->presenter('price');
 $routes->presenter('testimonial');
+$routes->get('/admin', 'Auth::login');
+$routes->get('/login', 'Auth::login');
+$routes->post('loginProcess', 'Auth::loginProcess');
+$routes->get('/logout', 'Auth::logout');
 
 
 /*

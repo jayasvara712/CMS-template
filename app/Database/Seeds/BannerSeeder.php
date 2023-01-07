@@ -10,7 +10,7 @@ class BannerSeeder extends Seeder
     {
         $data = [
             'id_banner' => '1',
-            'img_banner' => '',
+            'img_banner' => 'banner.jpg',
             'keterangan_banner' => ''
         ];
         $this->db->table('banner')->insert($data);

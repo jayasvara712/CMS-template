@@ -221,6 +221,7 @@
         }
 
         function layoutselect(id_gambar) {
+
             // document.getElementById("img_" + id_gambar).addClass("img-onclick")
             var v = document.getElementById("layout_" + id_gambar);
             var y = document.getElementsByClassName('pilihan');
@@ -229,11 +230,13 @@
             // x.innerHTML = "";
             let choice = '';
 
+
             if (v.classList.contains("layout-onclick")) {
                 v.className += " kosong";
                 v.classList.remove("layout-onclick");
                 choice = z.value.slice(0, -1);
                 z.value = choice;
+
             } else {
                 v.classList.remove("layout-onclick");
                 v.className += " layout-onclick";
@@ -253,9 +256,49 @@
                 }
                 z.value += choice.slice(0, -1);
 
+                let id = id_gambar;
+                let index = 1;
+                let contentSection = document.querySelector('div.content-section')
+
+                function createSection() {
+                    $(document).ready(function() {
+                        $('.summernote').summernote({
+                            toolbar: [
+                                // [groupName, [list of button]]
+                                ['style', ['bold', 'italic', 'underline', 'clear']],
+                                ['font', ['strikethrough', 'superscript', 'subscript']],
+                                ['fontsize', ['fontsize']],
+                                ['color', ['color']],
+                                ['para', ['ul', 'paragraph']],
+                                ['height', ['height']]
+                            ]
+                        });
+                    });
+
+                    return `<label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Isi Konten</label>
+                    <div class="col-sm-12 col-md-7">
+                    <textarea class="summernote" id="summernote txt_${index}" name="isi_konten[]" ></textarea>
+                     </div>`;
+
+                }
+
+                if (id == 1 || id == 2) {
+                    contentSection.insertAdjacentHTML('beforeend', createSection());
+                } else if (id == 3) {
+                    for (index; index < id; index++) {
+                        contentSection.insertAdjacentHTML('beforeend', createSection());
+                    }
+                }
+
             }
 
         }
+
+        // function urlmaker() {
+        //     let judul = document.getElementById("judul");
+        //     let url = document.getElementById("url");
+        //     url.value = judul.value.toLowerCase().replace(" ", "-");
+        // }
     </script>
 
 </body>

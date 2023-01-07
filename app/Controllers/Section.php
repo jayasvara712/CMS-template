@@ -79,6 +79,16 @@ class Section extends ResourcePresenter
             return redirect()->to(site_url('/section/new'))->withInput()->with('error', $this->validator->getErrors());
         } else {
 
+            $txt = array();
+            $isi_konten_init = $this->request->getPost('isi_konten');
+            foreach ($isi_konten_init as $content) {
+                array_push(
+                    $txt,
+                    $content
+                );
+            }
+            $txt = implode('<!>', $txt);
+
             $data = [
                 'layout' => $this->request->getPost('layout'),
                 'judul' => $this->request->getPost('judul'),
@@ -87,7 +97,7 @@ class Section extends ResourcePresenter
                 'status' => $this->request->getPost('status'),
                 'gambar' =>  $this->request->getPost('gambar'),
                 'slug' => $this->request->getPost('slug'),
-                'isi_konten' => $this->request->getPost('isi_konten'),
+                'isi_konten' => $txt,
 
             ];
             $this->sectionModel->insert($data);
@@ -144,6 +154,17 @@ class Section extends ResourcePresenter
         if (!$validation) {
             return redirect()->to(previous_url())->withInput()->with('error', $this->validator->getErrors());
         }
+
+        $txt = array();
+        $isi_konten_init = $this->request->getPost('isi_konten');
+        foreach ($isi_konten_init as $content) {
+            array_push(
+                $txt,
+                $content
+            );
+        }
+        $txt = implode('<!>', $txt);
+
         $data = [
             'layout' => $this->request->getPost('layout'),
             'judul' => $this->request->getPost('judul'),
@@ -151,7 +172,7 @@ class Section extends ResourcePresenter
             'tgl_publish' => $this->request->getPost('tgl_publish'),
             'status' => $this->request->getPost('status'),
             'gambar' =>  $this->request->getPost('gambar'),
-            'isi_konten' => $this->request->getPost('isi_konten')
+            'isi_konten' => $txt
         ];
         $this->sectionModel->update($id_section, $data);
         return redirect()->to(site_url('section'))->with('success', 'Section Berhasil Dirubah');

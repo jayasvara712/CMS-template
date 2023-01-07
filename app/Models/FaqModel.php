@@ -14,4 +14,11 @@ class FaqModel extends Model
         'judul_faq',
         'deskripsi_faq'
     ];
+
+    public function count_all()
+    {
+        $builder = $this->db->table($this->table);
+        $query = $builder->countAll();
+        return $query;
+    }
 }

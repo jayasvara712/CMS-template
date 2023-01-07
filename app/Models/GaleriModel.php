@@ -18,4 +18,11 @@ class GaleriModel extends Model
     protected $attributes           = [
         'gambar_media_galeri' => null
     ];
+
+    public function count_all()
+    {
+        $builder = $this->db->table($this->table);
+        $query = $builder->countAll();
+        return $query;
+    }
 }

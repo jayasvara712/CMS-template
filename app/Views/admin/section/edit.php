@@ -90,12 +90,10 @@
                     </div>
                   </div>
 
-                  <div class="form-group row mb-4">
-                    <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Isi Konten</label>
-                    <div class="col-sm-12 col-md-7">
-                      <textarea class="summernote" name="isi_konten"><?= $section->isi_konten ?></textarea>
-                    </div>
+                  <input type="hidden" id="isi_data" value="<?= $section->isi_konten ?>">
+                  <div class="form-group row mb-4 content-section">
                   </div>
+
                 </div>
 
                 <div class="form-group row mb-4">
@@ -182,6 +180,42 @@
     }
     z.value = choice;
     $('#view_galeri').modal('hide');
+
+    let id = document.getElementById('txt_layout').value;
+    let index = 1;
+    let contentSection = document.querySelector('div.content-section');
+    var string = document.getElementById('isi_data').value;
+    var explode = string.split("<!>");
+
+    function createSection() {
+      $(document).ready(function() {
+        $('.summernote').summernote({
+          toolbar: [
+            // [groupName, [list of button]]
+            ['style', ['bold', 'italic', 'underline', 'clear']],
+            ['font', ['strikethrough', 'superscript', 'subscript']],
+            ['fontsize', ['fontsize']],
+            ['color', ['color']],
+            ['para', ['ul', 'paragraph']],
+            ['height', ['height']]
+          ]
+        });
+      });
+
+      return `<label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Isi Konten</label>
+                    <div class="col-sm-12 col-md-7">
+                    <textarea class="summernote" id="summernote txt_${index}" name="isi_konten[]" >${explode[index - 1]}</textarea>
+                     </div>`;
+
+    }
+
+    if (id == 1 || id == 2) {
+      contentSection.insertAdjacentHTML('beforeend', createSection());
+    } else if (id == 3) {
+      for (index; index < id; index++) {
+        contentSection.insertAdjacentHTML('beforeend', createSection(index));
+      }
+    }
   };
 </script>
 

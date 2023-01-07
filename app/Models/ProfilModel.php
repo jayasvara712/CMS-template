@@ -32,4 +32,11 @@ class ProfilModel extends Model
         $builder->where('id_profil', $id_profil);
         return $builder->get()->getResult();
     }
+
+    public function count_all()
+    {
+        $builder = $this->db->table($this->table);
+        $query = $builder->countAll();
+        return $query;
+    }
 }

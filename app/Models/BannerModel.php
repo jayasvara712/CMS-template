@@ -17,4 +17,11 @@ class BannerModel extends Model
     protected $attributes           = [
         'gambar_media_banner' => null
     ];
+
+    public function count_all()
+    {
+        $builder = $this->db->table($this->table);
+        $query = $builder->countAll();
+        return $query;
+    }
 }

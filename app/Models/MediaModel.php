@@ -15,4 +15,11 @@ class MediaModel extends Model
         'deskripsi_media',
         'file_media'
     ];
+
+    public function count_all()
+    {
+        $builder = $this->db->table($this->table);
+        $query = $builder->countAll();
+        return $query;
+    }
 }

@@ -171,11 +171,13 @@
                             </div>
                         </div>
 
-                        <div class="row justify-content-center">
-                            <div class="col-lg-11">
-                                <img src="<?= base_url() ?>/uploads/media/<?= $value->gambar_media_section->file_media ?>" class="image_section img-fluid">
+                        <?php if ($value->gambar_media_section != null) { ?>
+                            <div class="row justify-content-center">
+                                <div class="col-lg-11">
+                                    <img src="<?= base_url() ?>/uploads/media/<?= $value->gambar_media_section->file_media ?>" class="image_section img-fluid">
+                                </div>
                             </div>
-                        </div>
+                        <?php } ?>
 
                         <div class="row justify-content-center">
                             <div class="col-lg-11">
@@ -195,9 +197,13 @@
                         </div>
 
                         <div class="row justify-content-center">
-                            <div class="col-lg-4">
-                                <img src="<?= base_url() ?>/uploads/media/<?= $value->gambar_media_section->file_media ?>" class="image_section img-fluid">
-                            </div>
+
+                            <?php if ($value->gambar_media_section != null) { ?>
+                                <div class="col-lg-4">
+                                    <img src="<?= base_url() ?>/uploads/media/<?= $value->gambar_media_section->file_media ?>" class="image_section img-fluid">
+                                </div>
+                            <?php } ?>
+
                             <div class="col-lg-7">
                                 <?= $value->isi_konten ?>
                             </div>
@@ -213,15 +219,24 @@
                             </div>
                         </div>
 
+                        <?php
+                        $text = $value->isi_konten;
+                        $isi_konten = explode("<!>", $text);
+                        ?>
+
                         <div class="row justify-content-center">
                             <div class="col-lg-4">
-                                <?= $value->isi_konten ?>
+                                <?= $isi_konten[0] ?>
                             </div>
-                            <div class="col-lg-4 row justify-content-center">
-                                <img src="<?= base_url() ?>/uploads/media/<?= $value->gambar_media_section->file_media ?>" class="image_section img-fluid">
-                            </div>
+
+                            <?php if ($value->gambar_media_section != null) { ?>
+                                <div class="col-lg-4 row justify-content-center">
+                                    <img src="<?= base_url() ?>/uploads/media/<?= $value->gambar_media_section->file_media ?>" class="image_section img-fluid">
+                                </div>
+                            <?php } ?>
+
                             <div class="col-lg-4">
-                                <?= $value->isi_konten ?>
+                                <?= $isi_konten[1]; ?>
                             </div>
                         </div>
                     </section>
@@ -338,7 +353,7 @@
                             <?php foreach ($testimonial as $key => $value) : ?>
                                 <div class="item">
                                     <div class="shadow-effect">
-                                        <img class="img-circle" src="<?= base_url('/uploads/galeri') . "/" ?><?= $value->gambar_testimonial ?>" alt="">
+                                        <img class="img-circle" src="<?= base_url('/uploads/media/testi') . "/" ?><?= $value->gambar_testimonial ?>" alt="">
                                         <p><?= $value->keterangan_testimonial ?></p>
                                     </div>
                                     <div class="testimonial-name">
